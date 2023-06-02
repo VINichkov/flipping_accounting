@@ -1,0 +1,42 @@
+= form_with(model: @target_param) do |form|
+  - if @target_param.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(@target_param.errors.count, "error")} prohibited this target_param from being saved:"
+      ul
+        - @target_param.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :project_id, style: "display: block"
+    = form.text_field :project_id
+
+  div
+    = form.label :start_price, style: "display: block"
+    = form.text_field :start_price
+
+  div
+    = form.label :is_credit, style: "display: block"
+    = form.check_box :is_credit
+
+  div
+    = form.label :initial_fee, style: "display: block"
+    = form.text_field :initial_fee
+
+  div
+    = form.label :mortgage_interest, style: "display: block"
+    = form.text_field :mortgage_interest
+
+  div
+    = form.label :project_duration, style: "display: block"
+    = form.number_field :project_duration
+
+  div
+    = form.label :additional_expenses, style: "display: block"
+    = form.text_field :additional_expenses
+
+  div
+    = form.label :monthly_payment, style: "display: block"
+    = form.text_field :monthly_payment
+
+  div
+    = form.submit

@@ -1,0 +1,9 @@
+= turbo_stream_from "state_#{state.id}"
+
+= turbo_frame_tag "state_#{state.id}" do
+  tr
+    th[scope="row"] = state.id
+    td = state.name
+    td = link_to(edit_state_path(state), class: 'btn btn-success') { render('icons/edit') }
+    td = link_to(state_path(state), class: 'btn btn-danger',
+            data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }) { render('icons/del') }

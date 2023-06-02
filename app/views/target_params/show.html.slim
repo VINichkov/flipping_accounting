@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @target_param
+
+div
+  => link_to "Edit this target param", edit_target_param_path(@target_param)
+  '|
+  =< link_to "Back to target params", target_params_path
+
+  = button_to "Destroy this target param", @target_param, method: :delete

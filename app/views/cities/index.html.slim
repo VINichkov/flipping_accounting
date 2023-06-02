@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Cities
+
+#cities
+  - @cities.each do |city|
+    == render city
+    p
+      = link_to "Show this city", city
+
+= link_to "New city", new_city_path

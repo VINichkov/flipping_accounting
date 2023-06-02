@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Target params
+
+#target_params
+  - @target_params.each do |target_param|
+    == render target_param
+    p
+      = link_to "Show this target param", target_param
+
+= link_to "New target param", new_target_param_path

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  project: one
+  start_price: 1.5
+  is_credit: false
+  initial_fee: 1.5
+  mortgage_interest: 1.5
+  project_duration: 1
+  additional_expenses: 1.5
+  monthly_payment: 1.5
+
+two:
+  project: two
+  start_price: 1.5
+  is_credit: false
+  initial_fee: 1.5
+  mortgage_interest: 1.5
+  project_duration: 1
+  additional_expenses: 1.5
+  monthly_payment: 1.5

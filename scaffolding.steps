@@ -1,0 +1,5 @@
+rails generate scaffold City name:string
+rails generate scaffold ProjectType name:string
+rails generate scaffold State name:string
+rails generate scaffold Project name:string city:references project_type:references state:references
+rails generate scaffold TargetParam project:references start_price:float is_credit:boolean initial_fee:float mortgage_interest:float project_duration:integer additional_expenses:float monthly_payment:float

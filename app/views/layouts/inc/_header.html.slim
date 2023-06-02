@@ -1,0 +1,23 @@
+.container
+  header
+    nav.navbar.bg-light
+      a.navbar-brand.p-0.me-2
+        = render('icons/calc')
+      button.navbar-toggler[type="button" data-bs-toggle="collapse" data-bs-target="#navbar"
+              aria-controls="navbar" aria-expanded="false" aria-label="Переключить навигацию"]
+        = render 'icons/collapse'
+      .navbar-collapse.collapse#navbar
+        a[href=projects_path]
+        .nav-item.dropdown
+          a.nav-link.dropdown-toggle#directories[href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true"]
+            |Справочники
+          ul.dropdown-menu[aria-labelledby="directories"]
+            li
+              a.dropdown-item[href=cities_path]
+                |Города
+            li
+              a.dropdown-item[href=project_types_path]
+                |Типы проектов
+            li
+              a.dropdown-item[href=states_path]
+                |Статусы проекта
