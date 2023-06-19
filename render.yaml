@@ -3,7 +3,7 @@ services:
     name: Flipping
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "bundle exec puma -C config/puma.rb -e production"
     envVars:
       - key: PG_DATABASE_URL
         fromDatabase:
