@@ -1,4 +1,11 @@
-div id="#{dom_id city}"
-  p
-    strong Name:
-    =< city.name
+= turbo_frame_tag dom_id(city)
+  .row.mb-2.mt-2.border-top.d-flex.align-items-center[data-controller = "#{ "highlight" if local_assigns[:highlight]}"]
+    .col.d-flex.justify-content-center
+      |&nbsp;#{city.id}
+    .col.d-flex.justify-content-center
+      = city.name
+    .col.d-flex.p-2.justify-content-center
+      .btn-group role="group" aria-label="Работа с карточков"
+        = link_to(edit_city_path(city), class: 'btn btn-success') { render('icons/edit') }
+        = link_to(city_path(city), class: 'btn btn-danger', title: 'delete',
+                    data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }) { render('icons/del') }

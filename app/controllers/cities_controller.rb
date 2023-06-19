@@ -1,9 +1,10 @@
 class CitiesController < ApplicationController
+  include Dictionary
   before_action :set_city, only: %i[ show edit update destroy ]
 
   # GET /cities or /cities.json
   def index
-    @cities = City.all
+    @city, @cities = object_index_factory(City)
   end
 
   # GET /cities/1 or /cities/1.json
@@ -25,11 +26,11 @@ class CitiesController < ApplicationController
 
     respond_to do |format|
       if @city.save
-        format.html { redirect_to city_url(@city), notice: "City was successfully created." }
-        format.json { render :show, status: :created, location: @city }
+        format.html { redirect_to cities_path }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(@city, partial: 'cities/form', locals: { city: @city })
+        }
       end
     end
   end
@@ -38,11 +39,9 @@ class CitiesController < ApplicationController
   def update
     respond_to do |format|
       if @city.update(city_params)
-        format.html { redirect_to city_url(@city), notice: "City was successfully updated." }
-        format.json { render :show, status: :ok, location: @city }
+        format.html { redirect_to city_url(@city)}
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @city.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,8 +51,7 @@ class CitiesController < ApplicationController
     @city.destroy
 
     respond_to do |format|
-      format.html { redirect_to cities_url, notice: "City was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { head :no_content }
     end
   end
 

@@ -1,10 +1,10 @@
 class StatesController < ApplicationController
+  include Dictionary
   before_action :set_state, only: %i[ show edit update destroy ]
 
   # GET /states or /states.json
   def index
-    @states = State.order(created_at: :asc)
-    @state = State.new
+    @state, @states = object_index_factory(State)
   end
 
   # GET /states/1 or /states/1.json
@@ -26,12 +26,11 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to state_url(@state), notice: "State was successfully created.", status: :see_other }
-        format.json { render :show, status: :created, location: @state }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@state, partial: 'states/form', locals: { state: @state }) }
+        format.html { redirect_to states_path }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @state.errors, status: :unprocessable_entity }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(@state, partial: 'states/form', locals: { state: @state })
+        }
       end
     end
   end
@@ -40,12 +39,9 @@ class StatesController < ApplicationController
   def update
     respond_to do |format|
       if @state.update(state_params)
-        format.html { redirect_to state_url(@state), notice: "State was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @state }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@state, partial: 'states/form', locals: { state: @state }) }
+        format.html { redirect_to state_url(@state)}
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @state.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +53,6 @@ class StatesController < ApplicationController
     respond_to do |format|
       #format.turbo_stream { render turbo_stream: turbo_stream.remove(@state) }
       format.html { redirect_to states_url, notice: "State was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

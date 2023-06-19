@@ -1,25 +1,22 @@
-p style="color: green" = notice
-
-h1.h1 Статусы проектов
-br
+.row
+  h1.h1 Статусы проектов
+hr
 
 = turbo_stream_from :states
 
 = turbo_frame_tag :state_form do
   = render 'states/form', state: @state
 
+.row.mb-2.mt-2.border-top.d-flex.align-items-center
+  .col.d-flex.justify-content-center
+    strong №
+  .col.d-flex.justify-content-center
+    strong Наименование
+  .col.d-flex.p-2.justify-content-center
+    strong Action
 
-table.table.table-hover
-  thead
-    tr
-      th[scope="col"]ID
-      th[scope="col"]Наименование
-      th[scope="col"]Редактирвовать
-      th[scope="col"]Удалить
-  tbody
-
-    = turbo_frame_tag :states do
-      = render partial:'states/state', collection: @states
+= turbo_frame_tag :states
+    = render 'inc/common/paginate', objects: @states
 
 
-= link_to "Добавить элемент", new_state_path, class: "btn btn-primary"
+

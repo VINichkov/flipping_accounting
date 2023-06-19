@@ -1,0 +1,4 @@
+= turbo_frame_tag "#{object_name(objects)}_#{objects.current_page}" do
+  = render objects
+  - unless objects.last_page?
+    = turbo_frame_tag "#{object_name(objects)}_#{objects.next_page}", :src => path_to_next_page(objects), :loading => "lazy"

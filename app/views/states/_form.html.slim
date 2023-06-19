@@ -1,14 +1,19 @@
-= form_with(model: @state) do |form|
-  - if @state.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(@state.errors.count, "error")} prohibited this state from being saved:"
-      ul
-        - @state.errors.each do |error|
-          li = error.full_message
+.card.card-body.mb-3.text-dark.bg-light
+  = form_with(model: @state, id: dom_id(@state)) do |form|
+    - if @state.errors.any?
+      div.text-danger
+        = "#{pluralize(@state.errors.count, "ошибка")} сохранения записи:"
+        ul
+          - @state.errors.each do |error|
+            - case error.full_message
+              - when 'Name has already been taken'
+                li Запись с таким наименованием существует
+              - else
+                li = error.full_message
 
-  div
-    = form.label :name, style: "display: block"
-    = form.text_field :name
-
-  div
-    = form.submit
+    .mb-3
+      = form.label :name, 'Наименование', class: 'form-label'
+      = form.text_field :name, class: 'form-control', placeholder: 'Архивный'
+    div[class = "#{ local_assigns[:edit]  ? 'd-flex justify-content-between' : 'd-flex justify-content-end'}" ]
+      = link_to('Отмена', states_path, class: 'btn btn-secondary') if local_assigns[:edit]
+      = form.submit 'Доравить элемент', class: 'btn btn-primary'

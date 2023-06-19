@@ -1,9 +1,10 @@
 class ProjectTypesController < ApplicationController
+  include Dictionary
   before_action :set_project_type, only: %i[ show edit update destroy ]
 
   # GET /project_types or /project_types.json
   def index
-    @project_types = ProjectType.all
+    @project_type, @project_types = object_index_factory(ProjectType)
   end
 
   # GET /project_types/1 or /project_types/1.json
@@ -25,11 +26,13 @@ class ProjectTypesController < ApplicationController
 
     respond_to do |format|
       if @project_type.save
-        format.html { redirect_to project_type_url(@project_type), notice: "Project type was successfully created." }
-        format.json { render :show, status: :created, location: @project_type }
+        format.html { redirect_to project_types_path }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @project_type.errors, status: :unprocessable_entity }
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            @project_type, partial: 'project_types/form', locals: { project_type: @project_type}
+          )
+        }
       end
     end
   end
@@ -38,11 +41,9 @@ class ProjectTypesController < ApplicationController
   def update
     respond_to do |format|
       if @project_type.update(project_type_params)
-        format.html { redirect_to project_type_url(@project_type), notice: "Project type was successfully updated." }
-        format.json { render :show, status: :ok, location: @project_type }
+        format.html { redirect_to project_type_url(@project_type)}
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @project_type.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,8 +53,7 @@ class ProjectTypesController < ApplicationController
     @project_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_types_url, notice: "Project type was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to project_types_url }
     end
   end
 

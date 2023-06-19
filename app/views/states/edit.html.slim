@@ -1,10 +1,2 @@
-h1 Editing state
-
-== render "form", state: @state
-
-br
-
-div
-  => link_to "Show this state", @state
-  '|
-  =< link_to "Back to states", states_path
+= turbo_frame_tag dom_id(@state)
+  = render "form", state: @state, edit: true

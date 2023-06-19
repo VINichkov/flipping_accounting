@@ -1,13 +1,14 @@
 require "application_system_test_case"
 
+
 class StatesTest < ApplicationSystemTestCase
   setup do
-    @state = states(:one)
+    @state = states(:three)
   end
 
   test "visiting the index" do
     visit states_url
-    assert_selector "h1", text: "States"
+    assert_selector "h1", text: "Статусы проектов"
   end
 
   test "should create state" do
@@ -18,7 +19,6 @@ class StatesTest < ApplicationSystemTestCase
     click_on "Create State"
 
     assert_text "State was successfully created"
-    click_on "Back"
   end
 
   test "should update State" do
@@ -29,13 +29,17 @@ class StatesTest < ApplicationSystemTestCase
     click_on "Update State"
 
     assert_text "State was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy State" do
-    visit state_url(@state)
-    click_on "Destroy this state", match: :first
 
-    assert_text "State was successfully destroyed"
+    accept_prompt do
+      visit states_url
+      puts("a[href='/states/#{State.last.id}']")
+      find("a[href='/states/#{State.find_by_name('NewStateThree').id}']").click
+      assert_text "State was successfully destroyed."
+    end
+
   end
+
 end

@@ -1,4 +1,13 @@
-div id="#{dom_id project_type}"
-  p
-    strong Name:
-    =< project_type.name
+= turbo_frame_tag dom_id(project_type)
+    .row.mb-2.mt-2.border-top.d-flex.align-items-center[data-controller = "#{ "highlight" if local_assigns[:highlight]}"]
+        .col.d-flex.justify-content-center
+            |&nbsp;#{project_type.id}
+        .col.d-flex.justify-content-center
+            = project_type.name
+        .col.d-flex.p-2.justify-content-center
+            .btn-group role="group" aria-label="Работа с карточков"
+                = link_to(edit_project_type_path(project_type), class: 'btn btn-success') { render('icons/edit') }
+                = link_to(project_type_path(project_type), class: 'btn btn-danger', title: 'delete',
+                        data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }) { render('icons/del') }
+
+
