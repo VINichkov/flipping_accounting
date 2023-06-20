@@ -19,8 +19,8 @@ port ENV.fetch("PORT") { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 
-if ENV['RENDER'].present?
-  environment 'production'
+if ENV.fetch("RENDER") { false }
+  environment "production"
 else
   environment ENV.fetch("RAILS_ENV") { "development" }
 end
