@@ -15,3 +15,10 @@
  */
 @import "bootstrap";
 @import "bootstrap-icons.css";
+
+.sidebar_active{
+  width: 380px;
+}
+.sidebar_deactive{
+  width: 0;
+}

@@ -11,9 +11,12 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
 
   body
-    = render 'layouts/inc/header'
-    .container
-      = yield
-      //script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"
+    .container-fluid
+      .row
+        = render 'layouts/inc/left_menu'
+        .col
+          = render 'layouts/inc/header'
+          = yield
+        //script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"
     = javascript_importmap_tags
 
