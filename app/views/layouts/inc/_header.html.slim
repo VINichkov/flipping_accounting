@@ -1,3 +1,35 @@
-header
-  nav.navbar.bg-light.d-flex.justify-content-end
-    button.navbar-toggler#sidebar_btn[type="button" aria-label="Переключить навигацию"]
+div[data-controller="bar"]
+  header.header#header
+    .header_toggle
+      i.fa.fa-solid.fa-bars#header-toggle[data-action="click->bar#click"]
+    .header_img
+      = image_tag('default-avatar.png')
+    nav#nav-bar.l-navbar.navbar-dark.bg-dark.text-white
+      ul.list-unstyled.ps-0
+        li.mb-1
+          a.nav_link[href=projects_path]
+            i.fa.fa-building-o.fa-lg.fs-1[style="color: #FFFFFF;"]
+            span.nav_text
+              | Проекты
+        li.mb-1
+          a.nav_link[href="#"]
+            i.fa.fa-file-text-o.fa-lg.fs-1[style="color: #FFFFFF;"]
+            span.nav_text
+              | Документы
+        li.mb-1
+          a.nav_link.btn.btn-toggle.collapsed[href="#" data-bs-toggle="collapse" data-bs-target="#dict-collapse" aria-expanded="false"]
+            i.fa.fa-folder.fa-lg.fs-1[style="color: #FFFFFF;"]
+            span.nav_text
+              | Справочники
+          #dict-collapse.collapse[style=""]
+            ul.btn-toggle-nav.list-unstyled.pb-1.small
+              li
+                a.nav_link.rounded[href=cities_path]
+                  i.fa.fa-university.fa-lg[style="color: #FFFFFF;"]
+                  span.nav_text
+                    | Локации
+              li
+                a.nav_link.rounded[href=project_types_path]
+                  i.fa.fa-sitemap.fa-lg[style="color: #FFFFFF;"]
+                  span.nav_text
+                    | Типы проектов

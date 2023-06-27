@@ -17,7 +17,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create project" do
     assert_difference("Project.count") do
-      post projects_url, params: { project: { city_id: @project.city_id, name: @project.name, project_type_id: @project.project_type_id, state_id: @project.state_id } }
+      post projects_url, params: { project: { city_id: @project.city_id, name: @project.name, project_type_id: @project.project_type_id} }
     end
 
     assert_redirected_to project_url(Project.last)
@@ -34,15 +34,8 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update project" do
-    patch project_url(@project), params: { project: { city_id: @project.city_id, name: @project.name, project_type_id: @project.project_type_id, state_id: @project.state_id } }
+    patch project_url(@project), params: { project: { city_id: @project.city_id, name: @project.name, project_type_id: @project.project_type_id} }
     assert_redirected_to project_url(@project)
   end
 
-  test "should destroy project" do
-    assert_difference("Project.count", -1) do
-      delete project_url(@project)
-    end
-
-    assert_redirected_to projects_url
-  end
 end

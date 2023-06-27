@@ -15,5 +15,5 @@
       = form.label :name, 'Наименование', class: 'form-label'
       = form.text_field :name, class: 'form-control', placeholder: 'Новостройка'
     div[class = "#{ local_assigns[:edit]  ? 'd-flex justify-content-between' : 'd-flex justify-content-end'}" ]
-      = link_to('Отмена', project_types_path, class: 'btn btn-secondary') if local_assigns[:edit]
-      = form.submit 'Доравить элемент', class: 'btn btn-primary'
+      = link_to('Отмена', project_type_path(@project_type), class: 'btn btn-secondary') if local_assigns[:edit]
+      = form.submit local_assigns[:edit] ? 'Сохранить' : 'Добавить', class: 'btn btn-primary'

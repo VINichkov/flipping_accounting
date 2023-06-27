@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
   # GET /projects or /projects.json
   def index
-    @project, @projects = object_index_factory(Project)
+    _, @projects = object_index_factory(Project)
+    @project = ProjectForm.new()
   end
 
   # GET /projects/1 or /projects/1.json
@@ -13,7 +14,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = ProjectForm.new()
   end
 
   # GET /projects/1/edit
@@ -22,7 +23,7 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = ProjectForm.new(project_params)
 
     respond_to do |format|
       if @project.save

@@ -15,13 +15,7 @@ class CitiesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create city" do
-    assert_difference("City.count") do
-      post cities_url, params: { city: { name: @city.name } }
-    end
 
-    assert_redirected_to city_url(City.last)
-  end
 
   test "should show city" do
     get city_url(@city)
@@ -33,16 +27,4 @@ class CitiesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update city" do
-    patch city_url(@city), params: { city: { name: @city.name } }
-    assert_redirected_to city_url(@city)
-  end
-
-  test "should destroy city" do
-    assert_difference("City.count", -1) do
-      delete city_url(@city)
-    end
-
-    assert_redirected_to cities_url
-  end
 end

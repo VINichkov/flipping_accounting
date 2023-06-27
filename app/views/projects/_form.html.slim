@@ -1,22 +1,27 @@
-= form_with(model: @project, id: dom_id(@project)) do |form|
-  - if @project.errors.any?
-    div style="color: red"
-      h2 = "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      ul
-        - @project.errors.each do |error|
-          li = error.full_message
-
-  div
-    = form.label :name, style: "display: block"
-    = form.text_field :name
-
-  div
-    = form.label :city_id, style: "display: block"
-    = form.text_field :city_id
-
-  div
-    = form.label :project_type_id, style: "display: block"
-    = form.text_field :project_type_id
-
-  div
-    = form.submit
+#form_project[data-controller='form']
+  .modal.fade[tabindex="-1"
+    aria-labelledby="formProjectLabel"
+    data-form-target = 'formWindow'
+    aria-hidden="true"
+    data-action="submit->form#submit"]
+    .modal-dialog.rounded
+      .modal-content
+        .modal-header.bg-blue-cus.text-white
+          h5.modal-title
+            |Новый проект
+          button.btn-close.white[type="button" data-bs-dismiss="modal" aria-label="Close"]
+        .modal-body
+          = form_with(model: @project, url: projects_path, id: customer_dom_id(@project)) do |form|
+            .mb-3
+              = form.label :name, class: 'form-label'
+              = form.text_field :name, class: "form-control"
+            .mb-3
+              = form.label :city_id, class: 'form-label'
+              = form.select :city_id,
+                      options_for_select(City.select(:id, :name).map(&:[name, id]]), default: 2),
+                      class: "form-control"
+            .mb-3
+              = form.label :project_type_id, class: 'form-label'
+              = form.text_field :project_type_id, class: "form-control"
+            .mb-3
+              = form.submit

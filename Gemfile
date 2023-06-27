@@ -4,13 +4,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.5"
+gem "rails", "~> 7.0.6"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.1rv"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -35,7 +35,8 @@ gem 'slim-rails'
 
 gem 'bootstrap'
 # Use Redis adapter to run Action Cable in production
- gem "redis", "~> 4.0"
+#gem 'async-redis'
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -51,8 +52,11 @@ gem "bootsnap", require: false
 
 gem 'kaminari'
 
-gem 'state_machines'
-
+gem 'aasm'
+gem 'after_commit_everywhere'
+gem 'virtus'
+gem "font-awesome-rails"
+#gem 'falcon'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

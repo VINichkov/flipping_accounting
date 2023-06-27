@@ -4,10 +4,10 @@ one:
   name: MyString
   city: one
   project_type: one
-  state: one
+
 
 two:
   name: MyString
   city: two
   project_type: two
-  state: two
+

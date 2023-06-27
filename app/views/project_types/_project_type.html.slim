@@ -6,8 +6,10 @@
             = project_type.name
         .col.d-flex.p-2.justify-content-center
             .btn-group role="group" aria-label="Работа с карточков"
-                = link_to(edit_project_type_path(project_type), class: 'btn btn-success') { render('icons/edit') }
+                = link_to(edit_project_type_path(project_type), class: 'btn btn-success') do
+                  i.fa.fa-pencil-square-o
                 = link_to(project_type_path(project_type), class: 'btn btn-danger', title: 'delete',
-                        data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }) { render('icons/del') }
+                        data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' })
+                  i.fa.fa-times
 
 

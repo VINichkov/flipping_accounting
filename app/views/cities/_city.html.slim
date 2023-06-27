@@ -6,6 +6,8 @@
       = city.name
     .col.d-flex.p-2.justify-content-center
       .btn-group role="group" aria-label="Работа с карточков"
-        = link_to(edit_city_path(city), class: 'btn btn-success') { render('icons/edit') }
+        = link_to(edit_city_path(city), class: 'btn btn-success')
+          i.fa.fa-pencil-square-o
         = link_to(city_path(city), class: 'btn btn-danger', title: 'delete',
-                    data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' }) { render('icons/del') }
+                    data: { turbo_method: :delete, turbo_confirm: 'Вы уверены?' })
+          i.fa.fa-times

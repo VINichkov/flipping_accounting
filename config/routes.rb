@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :target_params
   resources :projects
-  resources :states
   resources :project_types
   resources :cities
 
