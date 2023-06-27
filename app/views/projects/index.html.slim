@@ -1,11 +1,20 @@
 p style="color: green" = notice
 
-h1 Projects
+.row
+  h1 Проекты
+
+hr
+= turbo_stream_from :projects
+
+= turbo_frame_tag :project_form do
+  = render 'projects/form', project: @project
+
+= turbo_frame_tag :projects
+  =render 'inc/common/paginate', objects: @projects
 
 #projects
   - @projects.each do |project|
     == render project
     p
       = link_to "Show this project", project
-
 = link_to "New project", new_project_path

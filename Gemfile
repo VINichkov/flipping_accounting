@@ -51,6 +51,8 @@ gem "bootsnap", require: false
 
 gem 'kaminari'
 
+gem 'state_machines'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
