@@ -6,7 +6,8 @@ p style="color: green" = notice
   .col-6.d-flex.justify-content-end.align-items-center
     =link_to  new_project_path, class: 'btn btn-primary', data: {turbo_frame: 'projects_form'}, type: "button" do
       i.fa.fa-pencil
-      |&nbsp;Новый проект
+      span.d-none.d-sm-inline
+        |&nbsp;Новый проект
 
 hr
 

@@ -17,9 +17,11 @@
               = form.text_field :name, class: "form-control"
             .mb-3
               = form.label :city_id, class: 'form-label'
+              //  TODO default city for user
               = form.select :city_id,
-                      options_for_select(City.select(:id, :name).map(&:[name, id]]), default: 2),
-                      class: "form-control"
+                      City.select(:id, :name).pluck(:name, :id),
+                      {:selected => 1},
+                      { class: "form-select", 'aria-label': "Select a city"}
             .mb-3
               = form.label :project_type_id, class: 'form-label'
               = form.text_field :project_type_id, class: "form-control"
