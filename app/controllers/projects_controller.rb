@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
-  include Dictionary
+
   before_action :set_project, only: %i[ show edit update destroy ]
 
   # GET /projects or /projects.json
   def index
-    _, @projects = object_index_factory(Project)
-    @project = ProjectForm.new()
+    @project = Project.new(name: "Новый проект №#{Project.count + 1}")
+    @projects = Project.page(params[:page]).per(params[:per_page]).order(created_at: :desc)
   end
 
   # GET /projects/1 or /projects/1.json

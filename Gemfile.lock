@@ -79,6 +79,10 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -99,6 +103,7 @@ GEM
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cuprite (0.14.3)
       capybara (~> 3.0)
@@ -210,6 +215,12 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    react-rails (2.7.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     redis (4.8.1)
     regexp_parser (2.8.0)
     reline (0.3.4)
@@ -296,6 +307,7 @@ DEPENDENCIES
   pg (~> 1.1rv)
   puma (~> 5.0)
   rails (~> 7.0.6)
+  react-rails (= 2.7)
   redis (~> 4.0)
   selenium-webdriver
   slim-rails

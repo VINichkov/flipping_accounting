@@ -2,14 +2,10 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
     connect() {
-        console.log("Зацепили bar_controller")
         this.nav = document.getElementById('nav-bar')
         this.bodypd = document.getElementById('body-pd')
         this.headerpd = document.getElementById('header')
         this.toggle = document.getElementById('header-toggle')
-        console.log(this.nav)
-        console.log(this.bodypd)
-        console.log(this.headerpd )
     }
 
     click(){

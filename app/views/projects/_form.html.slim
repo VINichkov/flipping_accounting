@@ -1,29 +1,80 @@
-#form_project[data-controller='form']
-  .modal.fade[tabindex="-1"
-    aria-labelledby="formProjectLabel"
-    data-form-target = 'formWindow'
-    aria-hidden="true"
-    data-action="submit->form#submit"]
-    .modal-dialog.rounded
-      .modal-content
-        .modal-header.bg-blue-cus.text-white
-          h5.modal-title
-            |Новый проект
-          button.btn-close.white[type="button" data-bs-dismiss="modal" aria-label="Close"]
-        .modal-body
-          = form_with(model: @project, url: projects_path, id: customer_dom_id(@project)) do |form|
-            .mb-3
-              = form.label :name, class: 'form-label'
-              = form.text_field :name, class: "form-control"
-            .mb-3
-              = form.label :city_id, class: 'form-label'
-              //  TODO default city for user
-              = form.select :city_id,
-                      City.select(:id, :name).pluck(:name, :id),
-                      {:selected => 1},
-                      { class: "form-select", 'aria-label': "Select a city"}
-            .mb-3
-              = form.label :project_type_id, class: 'form-label'
-              = form.text_field :project_type_id, class: "form-control"
-            .mb-3
-              = form.submit
+.card.card-body.mb-3.text-dark.bg-light[data-controller = 'project-form']
+  = form_with(model: @project, url: projects_path, id: customer_dom_id(@project)) do |form|
+    .mb-3
+      = form.label :name, 'Наименование', class: 'form-label'
+      = form.text_field :name, class: "form-control"
+    .mb-3
+      = form.label :city_id, 'Город', class: 'form-label'
+      //  TODO default city for user
+      = form.select :city_id,
+              City.select(:id, :name).pluck(:name, :id),
+              { :selected => 1 },
+              { class: "form-select", 'aria-label': "Select a city" }
+    .mb-3
+      = form.label :project_type_id, 'Тип проекта', class: 'form-label'
+      = form.select :project_type_id,
+              ProjectType.select(:id, :name).pluck(:name, :id),
+              { :selected => 1 },
+              { class: "form-select"  , 'aria-label': "Select a project type" }
+    .mb-3
+      = form.label :project_duration, 'Продолжительность проекта', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#128197;
+        = form.text_field :project_duration, class: "form-control"
+    .mb-3
+      = form.label :start_price, 'Цена покупки', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :start_price, class: "form-control"
+    .mb-3
+      = form.label :additional_expenses, 'Дополнительные расходы по сделк', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :additional_expenses, class: "form-control"
+    .mb-3
+      .form-check.form-switch
+        = form.label :is_credit, 'Ипотека', class: 'form-check-label'
+        = form.check_box :is_credit, class: "form-check-input"
+    hr.cred.d-none
+    .mb-3.cred.d-none
+      = form.label :initial_fee, 'Первоначальный взнос', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :initial_fee, class: "form-control"
+    .mb-3.cred.d-none
+      = form.label :mortgage_interest, 'Процент по ипотеке', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | %
+        = form.text_field :mortgage_interest, class: "form-control"
+    .mb-3.cred.d-none
+      = form.label :credit_duration, 'Колличество платежей до продажи', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#128197;
+        = form.number_field :credit_duration, class: "form-control"
+    .mb-3.cred.d-none
+      = form.label :monthly_payment, 'Ежемесячный платеж', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :monthly_payment, class: "form-control"
+    .mb-3.cred.d-none
+      = form.label :additional_exp_credit, 'Дополнительные расходы по ипотеке', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :additional_exp_credit, class: "form-control"
+    hr
+    .mb-3
+      = form.label :final_price, 'Цена продажи', class: 'form-label'
+      .input-group
+        span.input-group-text
+          | &#8381;
+        = form.text_field :final_price, class: "form-control"
+    .mb-3
+      = form.submit

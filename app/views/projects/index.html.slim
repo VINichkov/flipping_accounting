@@ -3,17 +3,27 @@ p style="color: green" = notice
 .row
   .col-6.d-flex.justify-content-start
     h1 Проекты
-  .col-6.d-flex.justify-content-end.align-items-center
-    =link_to  new_project_path, class: 'btn btn-primary', data: {turbo_frame: 'projects_form'}, type: "button" do
-      i.fa.fa-pencil
-      span.d-none.d-sm-inline
-        |&nbsp;Новый проект
 
 hr
+.row
+  .accordion
+    .accordion-item
+      .accordion-header
+        button.accordion-button.collapsed[type="button" data-bs-toggle="collapse" data-bs-target="#new_project"
+                                aria-expanded="false" aria-controls="new_project"]
+          h2
+            i.fa.fa-pencil
+            span
+              |&nbsp;Новый проект
+        #new_project.accordion-collapse.collapse[aria-labelledby="new_project"]
+          .accordion-body
+            = turbo_frame_tag :project_form do
+              = render 'projects/form', project: @project
 
 = turbo_frame_tag :projects
   =render 'inc/common/paginate', objects: @projects
 
 = turbo_frame_tag :projects_form
 
+= react_component("HelloWorld", { greeting: "Hello from react-rails." })
 

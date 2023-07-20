@@ -86,3 +86,5 @@ group :test do
   gem "webdrivers"
   gem "cuprite"
 end
+
+gem "react-rails", "= 2.7"

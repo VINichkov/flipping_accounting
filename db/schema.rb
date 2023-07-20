@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_142821) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_18_140725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,9 +37,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_142821) do
     t.boolean "is_credit", default: false, comment: "Кредитные средства или собственные. По умолчанию собственные"
     t.float "initial_fee", default: 0.0, comment: "Первоначальный платеж. Только для кредитных"
     t.float "mortgage_interest", default: 0.0, comment: "Процент по ипотеке. Только для кредитных"
-    t.float "project_duration", default: 120.0, comment: "Планируемая продолжительность проекта. По умолчанию 120 дней"
+    t.integer "project_duration", default: 3, comment: "Планируемая продолжительность проекта. По умолчанию 3 платежа"
     t.float "additional_expenses", default: 0.0, comment: "Общая сумма дополнительных платежей"
     t.float "monthly_payment", default: 0.0, comment: "Ежемесячный платеж"
+    t.integer "credit_duration", default: 120, comment: "Планируемая продолжительность пользования кредита. По умолчанию 120 дней"
+    t.float "additional_exp_credit", default: 0.0, comment: "Дополнительные платежи по ипотеке (страховка и т.п)."
+    t.float "final_price", default: 0.0, comment: "Цена продажи"
     t.index ["city_id"], name: "index_projects_on_city_id"
     t.index ["project_type_id"], name: "index_projects_on_project_type_id"
   end
